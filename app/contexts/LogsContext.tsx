@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useCallback, useMemo, ReactNode } from "react";
 import { Log } from "../types/Log";
+import { WeightedListItem } from "../types/WeightedListItem";
 
 type LogState = Record<number, Log>;
 
@@ -63,6 +64,40 @@ export const LogsProvider = ({ children }: { children: ReactNode }) => {
 					logs.push(state[dateKey]);
 				}
 			}
+			return logs;
+		},
+		[state]
+	);
+
+	// FULL DISCLOSURE: This is AI-assisted af. I just wanted to add a quick retro itterator.
+	// Although, the weighted list genius move - all me baby.
+	// This list makes us able to have newer logs take priority
+	const getSpan = useCallback(
+		(date: number, retrospect: number): WeightedListItem<Log>[] => {
+			const logs: WeightedListItem<Log>[] = [];
+
+			// Extract year, month, day from the date in yyyymmdd format
+			const year = Math.floor(date / 10000);
+			const month = Math.floor((date % 10000) / 100);
+			const day = date % 100;
+
+			// Create a Date object from the input date
+			let currentDate = new Date(year, month - 1, day); // JS month is 0-based
+
+			for (let i = 0; i <= retrospect; i++) {
+				// Convert currentDate back to yyyymmdd number format
+				const y = currentDate.getFullYear();
+				const m = currentDate.getMonth() + 1;
+				const d = currentDate.getDate();
+				const dateKey = y * 10000 + m * 100 + d;
+
+				if (state[dateKey]) {
+					logs.push({ weight: retrospect - i, item: state[dateKey] });
+				}
+				// Move one day back
+				currentDate.setDate(currentDate.getDate() - 1);
+			}
+
 			return logs;
 		},
 		[state]
