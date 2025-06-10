@@ -8,6 +8,7 @@ type LogState = Record<number, Log>;
 type LogsContextValue = {
 	getByDate: (date: number) => Log | null;
 	getByMonth: (month: number) => Log[];
+	getSpan: (date: number, retrospect: number) => WeightedListItem<Log>[];
 	push: (date: number, log: Log) => void;
 	remove: (date: number) => void;
 	clearAll: () => void;
@@ -97,6 +98,7 @@ export const LogsProvider = ({ children }: { children: ReactNode }) => {
 		() => ({
 			getByDate,
 			getByMonth,
+			getSpan,
 			push,
 			remove,
 			clearAll,
