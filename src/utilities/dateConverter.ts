@@ -1,11 +1,13 @@
-const yyyymmddToDate = (yyyymmdd: number): Date => {
+// Disclaimer: AI-assisted for speedier development.
+
+export const formatDateToDate = (yyyymmdd: number): Date => {
 	const year = Math.floor(yyyymmdd / 10000);
 	const month = Math.floor((yyyymmdd % 10000) / 100) - 1; // zero-based month for JS Date
 	const day = yyyymmdd % 100;
 	return new Date(year, month, day);
 };
 
-const dateToYyyymmdd = (date: Date): number => {
+export const dateToFormatDate = (date: Date): number => {
 	const year = date.getFullYear();
 	const month = date.getMonth() + 1; // JS months are zero-based
 	const day = date.getDate();
