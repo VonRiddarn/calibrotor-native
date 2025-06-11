@@ -39,7 +39,8 @@ export const LogModalProvider = ({ children }: { children: React.ReactNode }) =>
 	}, []);
 
 	const save = () => {
-		logsState.push(logDate, { weight: Number(weight) });
+		if (!weight || Number(weight) === 0) logsState.remove(logDate);
+		else logsState.push(logDate, { weight: Number(weight) });
 		closeModal();
 	};
 
