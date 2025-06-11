@@ -3,7 +3,6 @@ import { Modal, View, Text, Pressable, StyleSheet, TextInput } from "react-nativ
 import { useLogModal } from "./LogModalContext";
 import { colors } from "../../styles/colors";
 import { FontAwesome } from "@expo/vector-icons";
-import { useLogs } from "../../contexts/LogsContext";
 import { formatDateToDate } from "../../utilities/dateConverter";
 
 const LogModal = () => {
