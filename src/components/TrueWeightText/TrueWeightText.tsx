@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		padding: 16,
 	},
 	title: {
-		fontSize: 18,
+		fontSize: 24,
 		marginBottom: 8,
 		color: "black",
 	},
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		gap: 6,
 	},
 	weightText: {
-		fontSize: 24,
+		fontSize: 48,
 		color: "black",
 	},
 	unitText: {
