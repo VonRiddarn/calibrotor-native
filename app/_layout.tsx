@@ -10,7 +10,7 @@ const RootLayout = () => {
 			<View style={styles.pageContainer}>
 				<Slot />
 			</View>
-			<View style={styles.footer}>
+			<View style={styles.navbar}>
 				<Link href={"/calendar"}>Calendar</Link>
 				<Link href={"/"}>Home</Link>
 				<Text>Footer</Text>
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	pageContainer: {
+		backgroundColor: "#ECECEC",
 		flex: 1, // Makes the page full screen so we push down the footer
 	},
-	footer: {},
+	navbar: {},
 });
