@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import TrueWeightText from "../src/components/TrueWeightText/TrueWeightText";
+import { dateToFormatDate } from "../src/utilities/dateConverter";
 
 const Home = () => {
 	return (
 		<View>
-			<Text>Home</Text>
+			<TrueWeightText date={dateToFormatDate(new Date())} retrospect={0} />
 			<Text>My test text</Text>
 		</View>
 	);

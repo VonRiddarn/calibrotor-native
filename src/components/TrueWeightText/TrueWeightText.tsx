@@ -19,13 +19,30 @@ const TrueWeightText = ({ date, retrospect }: TrueWeightTextProps) => {
 	};
 
 	return (
-		<View>
-			<Text>{getRollingAverage(logsState.getSpan(date, retrospect))}</Text>
-			<Text>Kg</Text>
+		<View style={styles.container}>
+			<View style={styles.box}>
+				<View>
+					<Text>True Weight</Text>
+					<View style={{ flexDirection: "row", gap: 6, justifyContent: "center" }}>
+						<Text>{getRollingAverage(logsState.getSpan(date, retrospect))}</Text>
+						<Text>Kg</Text>
+					</View>
+				</View>
+			</View>
 		</View>
 	);
 };
 
 export default TrueWeightText;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: "row",
+		justifyContent: "center",
+	},
+	box: {
+		marginVertical: 16,
+		padding: 32,
+		backgroundColor: "#F8F9FA",
+	},
+});
