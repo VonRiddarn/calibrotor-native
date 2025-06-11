@@ -5,7 +5,7 @@ import { useLogModal } from "../../features/LogModal/LogModalContext";
 const OpenLogButton = () => {
 	const modal = useLogModal();
 	return (
-		<Pressable style={{ padding: 32 }} onPress={() => modal.openModal(0)}>
+		<Pressable style={{ padding: 32 }} onPress={() => modal.openModal(42)}>
 			<Text>{modal.isVisible ? "Close" : "Open"}</Text>
 		</Pressable>
 	);
