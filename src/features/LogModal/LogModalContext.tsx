@@ -4,7 +4,7 @@ type LogModalContextType = {
 	openModal: (logDate: number) => void;
 	closeModal: () => void;
 	isVisible: boolean;
-	logDate: number | null;
+	logDate: number;
 };
 
 const LogModalContext = createContext<LogModalContextType | null>(null);
@@ -17,7 +17,7 @@ export const useLogModal = () => {
 
 export const LogModalProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isVisible, setIsVisible] = useState(false);
-	const [logDate, setLogDate] = useState<number | null>(null);
+	const [logDate, setLogDate] = useState<number>(0);
 
 	const openModal = React.useCallback((date: number) => {
 		setLogDate(date);
