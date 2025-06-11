@@ -1,5 +1,5 @@
-import React from "react";
-import { Modal, View, Text, Pressable, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { Modal, View, Text, Pressable, StyleSheet, TextInput } from "react-native";
 import { useLogModal } from "./LogModalContext";
 import { colors } from "../../styles/colors";
 import { FontAwesome } from "@expo/vector-icons";
@@ -7,20 +7,19 @@ import { useLogs } from "../../contexts/LogsContext";
 import { formatDateToDate } from "../../utilities/dateConverter";
 
 const LogModal = () => {
-	const { isVisible, closeModal, logDate } = useLogModal();
+	const modalState = useLogModal();
 	const logsState = useLogs();
-
-	const displayDate = formatDateToDate(logDate);
+	const displayDate = formatDateToDate(modalState.logDate);
 
 	return (
 		<Modal
 			transparent
 			animationType="slide"
-			visible={isVisible}
-			onRequestClose={closeModal} // Makes Android back button close modal
+			visible={modalState.isVisible}
+			onRequestClose={modalState.closeModal} // Makes Android back button close modal
 		>
 			<View style={styles.modalContent}>
-				<Pressable onPress={closeModal} style={styles.closeButton}>
+				<Pressable onPress={modalState.closeModal} style={styles.closeButton}>
 					<FontAwesome name="close" size={32} color={colors.text.offWhite} />
 				</Pressable>
 				<Text style={styles.date}>
@@ -30,8 +29,15 @@ const LogModal = () => {
 						year: "numeric",
 					})}
 				</Text>
-				<Text>This is a modal!</Text>
-				<Text>Weight: {logsState.getByDate(logDate ?? -1)?.weight}</Text>
+				<View>
+					<Text>Weight</Text>
+					<TextInput
+						style={styles.input}
+						keyboardType="numeric"
+						value={modalState.weight}
+						onChangeText={modalState.setWeight}
+					/>
+				</View>
 			</View>
 		</Modal>
 	);
@@ -60,5 +66,11 @@ const styles = StyleSheet.create({
 		borderRadius: 40,
 		padding: 8,
 		width: 48,
+	},
+	input: {
+		backgroundColor: colors.background.darkGrey,
+		color: colors.text.offWhite,
+		borderWidth: 1,
+		borderColor: colors.text.grey,
 	},
 });

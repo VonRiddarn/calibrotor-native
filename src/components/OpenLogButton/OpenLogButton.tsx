@@ -4,14 +4,15 @@ import { useLogModal } from "../../features/LogModal/LogModalContext";
 import { colors } from "../../styles/colors";
 
 type OpenLogButtonProps = {
+	text: string;
 	date: number;
 };
 
-const OpenLogButton = ({ date }: OpenLogButtonProps) => {
+const OpenLogButton = ({ text, date }: OpenLogButtonProps) => {
 	const modal = useLogModal();
 	return (
 		<Pressable style={styles.openLogButton} onPress={() => modal.openModal(date)}>
-			<Text style={styles.openLogText}>OPEN LOG</Text>
+			<Text style={styles.openLogText}>{text}</Text>
 		</Pressable>
 	);
 };

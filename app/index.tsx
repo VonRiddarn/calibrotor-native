@@ -16,7 +16,8 @@ const Home = () => {
 			<View style={{ flex: 1 }}>
 				<TrueWeightText date={dateToFormatDate(currentDate)} retrospect={7} />
 			</View>
-			<OpenLogButton date={dateToFormatDate(currentDate)} />
+			<OpenLogButton text="Open Log" date={dateToFormatDate(currentDate)} />
+			<OpenLogButton text="2025-06-10" date={20250610} />
 		</View>
 	);
 };

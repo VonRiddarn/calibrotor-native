@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
+import { useLogs } from "../../contexts/LogsContext";
 
 type LogModalContextType = {
 	openModal: (logDate: number) => void;
 	closeModal: () => void;
 	isVisible: boolean;
 	logDate: number;
+	weight: string;
+	setWeight: (value: string) => void;
 };
 
 const LogModalContext = createContext<LogModalContextType | null>(null);
@@ -16,11 +19,14 @@ export const useLogModal = () => {
 };
 
 export const LogModalProvider = ({ children }: { children: React.ReactNode }) => {
+	const logsState = useLogs();
 	const [isVisible, setIsVisible] = useState(false);
 	const [logDate, setLogDate] = useState<number>(0);
+	const [weight, setWeight] = useState<string>("");
 
 	const openModal = React.useCallback((date: number) => {
 		setLogDate(date);
+		setWeight(`${logsState.getByDate(date)?.weight ?? ""}`);
 		setIsVisible(true);
 	}, []);
 
@@ -33,6 +39,8 @@ export const LogModalProvider = ({ children }: { children: React.ReactNode }) =>
 		closeModal,
 		isVisible,
 		logDate,
+		weight,
+		setWeight,
 	};
 
 	return <LogModalContext.Provider value={value}>{children}</LogModalContext.Provider>;
