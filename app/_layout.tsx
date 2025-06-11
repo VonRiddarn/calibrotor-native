@@ -22,8 +22,18 @@ const RootLayout = () => {
 					</View>
 					<OpenLogButton />
 					<View style={styles.navbar}>
-						<NavFontAwesome to={"/"} name="home"></NavFontAwesome>
-						<NavFontAwesome to={"/calendar"} name="calendar"></NavFontAwesome>
+						<NavFontAwesome
+							to={"/"}
+							name="home"
+							color={colors.text.offWhite}
+							activeColor={colors.text.active}
+						></NavFontAwesome>
+						<NavFontAwesome
+							to={"/calendar"}
+							name="calendar"
+							color={colors.text.offWhite}
+							activeColor={colors.text.active}
+						></NavFontAwesome>
 					</View>
 				</SafeAreaView>
 			</LogModalProvider>
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
 		flex: 1, // Makes the page full screen so we push down the footer
 	},
 	navbar: {
+		backgroundColor: colors.background.darkGrey,
 		paddingVertical: 4,
 		flexDirection: "row",
 		justifyContent: "space-around",
