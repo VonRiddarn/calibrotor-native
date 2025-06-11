@@ -20,7 +20,6 @@ const RootLayout = () => {
 					<View style={styles.pageContainer}>
 						<Slot />
 					</View>
-					<OpenLogButton />
 					<View style={styles.navbar}>
 						<NavFontAwesome
 							to={"/"}
