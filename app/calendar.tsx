@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import OpenLogDateButton from "../src/components/OpenLogDateButton/OpenLogDateButton";
 import { useLogs } from "../src/contexts/LogsContext";
 import { colors } from "../src/styles/colors";
 import { dateToFormatDate } from "../src/utilities/dateConverter";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Calendar = () => {
 	const logsState = useLogs();
@@ -30,10 +31,35 @@ const Calendar = () => {
 		return `${monthName}, ${y}`;
 	};
 
+	const changeMonth = (delta: number) => {
+		setMonth((prevMonth) => {
+			const year = Math.floor(prevMonth / 100);
+			const mon = prevMonth % 100;
+			let newMonth = mon + delta;
+			let newYear = year;
+
+			if (newMonth > 12) {
+				newYear += 1;
+				newMonth = 1;
+			} else if (newMonth < 1) {
+				newYear -= 1;
+				newMonth = 12;
+			}
+
+			return newYear * 100 + newMonth;
+		});
+	};
+
 	return (
 		<>
-			<View>
+			<View style={styles.monthView}>
+				<Pressable onPress={() => changeMonth(-1)}>
+					<FontAwesome name="arrow-circle-left" size={48} color={colors.text.offWhite} />
+				</Pressable>
 				<Text style={styles.monthName}>{getMonthName()}</Text>
+				<Pressable onPress={() => changeMonth(1)}>
+					<FontAwesome name="arrow-circle-right" size={48} color={colors.text.offWhite} />
+				</Pressable>
 			</View>
 			<View style={styles.calendar}>
 				{Array.from({ length: getDaysInMonth() }, (_, i) => {
@@ -58,13 +84,18 @@ const Calendar = () => {
 export default Calendar;
 
 const styles = StyleSheet.create({
+	monthView: {
+		flexDirection: "row",
+		alignItems: "center",
+		marginVertical: 16,
+		paddingHorizontal: 16,
+	},
 	monthName: {
 		fontSize: 32,
 		marginHorizontal: "auto",
 		color: colors.text.offWhite,
 		borderColor: colors.text.grey,
 		borderBottomWidth: 1,
-		marginVertical: 16,
 	},
 	calendar: {
 		flexDirection: "row",
