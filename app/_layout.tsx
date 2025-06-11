@@ -4,6 +4,7 @@ import { Slot } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavLink from "../src/components/NavLink/NavLink";
 import { FontAwesome } from "@expo/vector-icons";
+import NavFontAwesome from "../src/NavFontAwesome/NavFontAwesome";
 
 const RootLayout = () => {
 	return (
@@ -13,13 +14,8 @@ const RootLayout = () => {
 				<Slot />
 			</View>
 			<View style={styles.navbar}>
-				<NavLink to={"/"}>
-					<FontAwesome name={"home"} size={32} />
-				</NavLink>
-				<NavLink to={"/calendar"}>
-					<FontAwesome name={"calendar"} size={32} />
-				</NavLink>
-				<Text>Footer</Text>
+				<NavFontAwesome to={"/"} name="home"></NavFontAwesome>
+				<NavFontAwesome to={"/calendar"} name="calendar"></NavFontAwesome>
 			</View>
 		</SafeAreaView>
 	);
@@ -35,5 +31,9 @@ const styles = StyleSheet.create({
 		backgroundColor: "#ECECEC",
 		flex: 1, // Makes the page full screen so we push down the footer
 	},
-	navbar: {},
+	navbar: {
+		paddingVertical: 4,
+		flexDirection: "row",
+		justifyContent: "space-around",
+	},
 });
