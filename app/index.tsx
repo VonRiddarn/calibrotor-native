@@ -22,8 +22,6 @@ const Home = () => {
 				</View>
 			</View>
 			<OpenLogButton text="Open Log" date={dateToFormatDate(currentDate)} />
-			{/* TODO: Remove later - This is for testing */}
-			<OpenLogButton text="2025-06-10" date={20250610} />
 		</View>
 	);
 };
