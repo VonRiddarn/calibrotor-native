@@ -8,7 +8,6 @@ import { formatDateToDate } from "../../utilities/dateConverter";
 
 const LogModal = () => {
 	const modalState = useLogModal();
-	const logsState = useLogs();
 	const displayDate = formatDateToDate(modalState.logDate);
 
 	return (
@@ -19,8 +18,8 @@ const LogModal = () => {
 			onRequestClose={modalState.closeModal} // Makes Android back button close modal
 		>
 			<View style={styles.modalContent}>
-				<Pressable onPress={modalState.closeModal} style={styles.closeButton}>
-					<FontAwesome name="close" size={32} color={colors.text.offWhite} />
+				<Pressable onPress={modalState.closeModal}>
+					<FontAwesome name="arrow-circle-left" size={48} color={colors.text.offWhite} />
 				</Pressable>
 				<Text style={styles.date}>
 					{displayDate.toLocaleDateString("en-US", {
@@ -39,6 +38,14 @@ const LogModal = () => {
 							onChangeText={modalState.setWeight}
 						/>
 						<Text style={styles.units}>Kg</Text>
+					</View>
+					<View style={styles.actionView}>
+						<Pressable onPress={modalState.save} style={styles.circularButton}>
+							<FontAwesome name="check" size={32} color={colors.text.offWhite} />
+						</Pressable>
+						<Pressable onPress={modalState.closeModal} style={styles.circularButton}>
+							<FontAwesome name="close" size={32} color={colors.text.offWhite} />
+						</Pressable>
 					</View>
 				</View>
 			</View>
@@ -63,7 +70,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.background.lightGrey,
 		padding: 20,
 	},
-	closeButton: {
+	circularButton: {
 		alignItems: "center",
 		borderWidth: 1,
 		borderColor: colors.text.offWhite,
@@ -94,5 +101,10 @@ const styles = StyleSheet.create({
 		color: colors.text.offWhite,
 		fontSize: 24,
 		textAlign: "center",
+	},
+	actionView: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginVertical: 64,
 	},
 });

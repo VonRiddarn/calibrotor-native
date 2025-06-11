@@ -8,6 +8,7 @@ type LogModalContextType = {
 	logDate: number;
 	weight: string;
 	setWeight: (value: string) => void;
+	save: () => void;
 };
 
 const LogModalContext = createContext<LogModalContextType | null>(null);
@@ -24,15 +25,23 @@ export const LogModalProvider = ({ children }: { children: React.ReactNode }) =>
 	const [logDate, setLogDate] = useState<number>(0);
 	const [weight, setWeight] = useState<string>("");
 
-	const openModal = React.useCallback((date: number) => {
-		setLogDate(date);
-		setWeight(`${logsState.getByDate(date)?.weight ?? ""}`);
-		setIsVisible(true);
-	}, []);
+	const openModal = React.useCallback(
+		(date: number) => {
+			setLogDate(date);
+			setWeight(`${logsState.getByDate(date)?.weight ?? ""}`);
+			setIsVisible(true);
+		},
+		[logsState]
+	);
 
 	const closeModal = React.useCallback(() => {
 		setIsVisible(false);
 	}, []);
+
+	const save = () => {
+		logsState.push(logDate, { weight: Number(weight) });
+		closeModal();
+	};
 
 	const value = {
 		openModal,
@@ -41,6 +50,7 @@ export const LogModalProvider = ({ children }: { children: React.ReactNode }) =>
 		logDate,
 		weight,
 		setWeight,
+		save,
 	};
 
 	return <LogModalContext.Provider value={value}>{children}</LogModalContext.Provider>;
