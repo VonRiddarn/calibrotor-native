@@ -21,7 +21,7 @@ const Calendar = () => {
 
 		if (formattedDate === dateToFormatDate(new Date())) return colors.text.active;
 		if (log) return colors.text.offWhite;
-		else return colors.text.grey;
+		else return "black";
 	};
 
 	const getMonthName = () => {
