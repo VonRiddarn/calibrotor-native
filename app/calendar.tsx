@@ -7,11 +7,11 @@ import { dateToFormatDate } from "../src/utilities/dateConverter";
 
 const Calendar = () => {
 	const logsState = useLogs();
-	const [date, setDate] = useState(20250611);
+	const [month, setMonth] = useState(202506);
 
 	const getDaysInMonth = (): number => {
-		const year = Math.floor(date / 100); // Extract first 4 digits.
-		const mon = Math.floor((date % 10000) / 100); // Middle 2 digits
+		const year = Math.floor(month / 100); // Extract first 4 digits.
+		const mon = month % 100; // extract last 2 digits.
 		return new Date(year, mon, 0).getDate(); // The new instance is automatically set to the last day of the month.
 	};
 
@@ -23,31 +23,49 @@ const Calendar = () => {
 		else return colors.text.grey;
 	};
 
+	const getMonthName = () => {
+		const y = Math.floor(month / 100);
+		const m = month % 100; // 1-based month
+		const monthName = new Date(y, m - 1).toLocaleString("en-US", { month: "long" });
+		return `${monthName}, ${y}`;
+	};
+
 	return (
-		<View style={styles.calendar}>
-			{Array.from({ length: getDaysInMonth() }, (_, i) => {
-				const year = Math.floor(date / 10000);
-				const mon = Math.floor((date % 10000) / 100);
-				const day = i + 1;
-
-				const formattedDate = year * 10000 + mon * 100 + day;
-
-				return (
-					<OpenLogDateButton
-						key={formattedDate}
-						date={formattedDate}
-						text={day < 10 ? `0${day}` : `${day}`}
-						borderColor={getColor(formattedDate)}
-					/>
-				);
-			})}
-		</View>
+		<>
+			<View>
+				<Text style={styles.monthName}>{getMonthName()}</Text>
+			</View>
+			<View style={styles.calendar}>
+				{Array.from({ length: getDaysInMonth() }, (_, i) => {
+					const year = Math.floor(month / 100);
+					const mon = month % 100;
+					const day = i + 1;
+					const formattedDate = year * 10000 + mon * 100 + day;
+					return (
+						<OpenLogDateButton
+							key={formattedDate}
+							date={formattedDate}
+							text={day < 10 ? `0${day}` : `${day}`}
+							borderColor={getColor(formattedDate)}
+						/>
+					);
+				})}
+			</View>
+		</>
 	);
 };
 
 export default Calendar;
 
 const styles = StyleSheet.create({
+	monthName: {
+		fontSize: 32,
+		marginHorizontal: "auto",
+		color: colors.text.offWhite,
+		borderColor: colors.text.grey,
+		borderBottomWidth: 1,
+		marginVertical: 16,
+	},
 	calendar: {
 		flexDirection: "row",
 		flexWrap: "wrap",
