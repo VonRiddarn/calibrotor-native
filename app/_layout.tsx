@@ -9,6 +9,7 @@ import { LogsProvider } from "../src/contexts/LogsContext";
 import LogModal from "../src/features/LogModal/LogModal";
 import { LogModalProvider, useLogModal } from "../src/features/LogModal/LogModalContext";
 import OpenLogButton from "../src/components/OpenLogButton/OpenLogButton";
+import { colors } from "../src/styles/colors";
 
 const RootLayout = () => {
 	return (
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	pageContainer: {
-		backgroundColor: "#ECECEC",
+		backgroundColor: colors.background.lightGrey,
 		flex: 1, // Makes the page full screen so we push down the footer
 	},
 	navbar: {
