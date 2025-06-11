@@ -3,6 +3,7 @@ import React from "react";
 import { useLogs } from "../../contexts/LogsContext";
 import { Log } from "../../types/Log";
 import { WeightedListItem } from "../../types/WeightedListItem";
+import { colors } from "../../styles/colors";
 
 type TrueWeightTextProps = {
 	date: number;
@@ -43,19 +44,19 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 24,
 		marginBottom: 8,
-		color: "black",
+		color: colors.text.offWhite,
 	},
 	row: {
 		flexDirection: "row",
-		alignItems: "center",
+		alignItems: "flex-end",
 		gap: 6,
 	},
 	weightText: {
 		fontSize: 48,
-		color: "black",
+		color: colors.text.offWhite,
 	},
 	unitText: {
 		fontSize: 24,
-		color: "grey",
+		color: colors.text.grey,
 	},
 });
