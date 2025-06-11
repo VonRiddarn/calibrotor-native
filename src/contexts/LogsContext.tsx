@@ -94,17 +94,14 @@ export const LogsProvider = ({ children }: { children: ReactNode }) => {
 
 	// The context value.
 	// Not sure if useMemo is needed, but my guess is that it can't hurt in this case.
-	const value = useMemo(
-		() => ({
-			getByDate,
-			getByMonth,
-			getSpan,
-			push,
-			remove,
-			clearAll,
-		}),
-		[]
-	);
+	const value = {
+		getByDate,
+		getByMonth,
+		getSpan,
+		push,
+		remove,
+		clearAll,
+	};
 
 	return <LogsContext.Provider value={value}>{children}</LogsContext.Provider>;
 };
