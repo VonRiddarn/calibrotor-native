@@ -2,6 +2,7 @@ export const colors = {
 	text: {
 		offWhite: "#EDEDED",
 		grey: "#606060",
+		active: "#4c92d4",
 	},
 
 	background: {
