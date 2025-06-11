@@ -1,16 +1,33 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useLogModal } from "../../features/LogModal/LogModalContext";
+import { colors } from "../../styles/colors";
 
-const OpenLogButton = () => {
+type OpenLogButtonProps = {
+	date: number;
+};
+
+const OpenLogButton = ({ date }: OpenLogButtonProps) => {
 	const modal = useLogModal();
 	return (
-		<Pressable style={{ padding: 32 }} onPress={() => modal.openModal(42)}>
-			<Text>{modal.isVisible ? "Close" : "Open"}</Text>
+		<Pressable style={styles.openLogButton} onPress={() => modal.openModal(date)}>
+			<Text style={styles.openLogText}>OPEN LOG</Text>
 		</Pressable>
 	);
 };
 
 export default OpenLogButton;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	openLogButton: {
+		backgroundColor: colors.background.darkGrey,
+		padding: 16,
+		borderWidth: 1,
+		borderColor: colors.text.offWhite,
+		marginVertical: 32,
+	},
+	openLogText: {
+		color: colors.text.offWhite,
+		fontSize: 40,
+	},
+});
