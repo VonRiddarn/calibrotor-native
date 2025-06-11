@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	},
 	navbar: {
 		backgroundColor: colors.background.darkGrey,
-		paddingVertical: 4,
+		paddingVertical: 16,
 		flexDirection: "row",
 		justifyContent: "space-around",
 	},
