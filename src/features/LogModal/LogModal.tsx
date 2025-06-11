@@ -29,14 +29,17 @@ const LogModal = () => {
 						year: "numeric",
 					})}
 				</Text>
-				<View>
-					<Text>Weight</Text>
-					<TextInput
-						style={styles.input}
-						keyboardType="numeric"
-						value={modalState.weight}
-						onChangeText={modalState.setWeight}
-					/>
+				<View style={{ marginHorizontal: "auto" }}>
+					<Text style={styles.weight}>Weight</Text>
+					<View style={styles.inputView}>
+						<TextInput
+							style={styles.input}
+							keyboardType="numeric"
+							value={modalState.weight}
+							onChangeText={modalState.setWeight}
+						/>
+						<Text style={styles.units}>Kg</Text>
+					</View>
 				</View>
 			</View>
 		</Modal>
@@ -45,6 +48,7 @@ const LogModal = () => {
 
 export default LogModal;
 
+// Idk what I'm doing anymore....
 const styles = StyleSheet.create({
 	date: {
 		marginHorizontal: "auto",
@@ -67,10 +71,28 @@ const styles = StyleSheet.create({
 		padding: 8,
 		width: 48,
 	},
-	input: {
-		backgroundColor: colors.background.darkGrey,
+	weight: {
+		fontSize: 32,
 		color: colors.text.offWhite,
+		margin: "auto",
+	},
+	units: {
+		color: colors.text.grey,
+		position: "absolute",
+		right: 8,
+		bottom: 16,
+	},
+	inputView: {
+		backgroundColor: colors.background.darkGrey,
 		borderWidth: 1,
 		borderColor: colors.text.grey,
+		width: 142,
+	},
+	input: {
+		margin: "auto",
+		width: 96,
+		color: colors.text.offWhite,
+		fontSize: 24,
+		textAlign: "center",
 	},
 });
