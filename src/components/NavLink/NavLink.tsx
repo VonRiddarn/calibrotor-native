@@ -13,7 +13,6 @@ const NavLink = ({ to, children }: NavLinkProps) => {
 
 	return (
 		<Link href={to} style={[styles.link, active ? styles.active : {}]}>
-			{active ? ">" : ""}
 			{children}
 		</Link>
 	);
@@ -26,7 +25,5 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 		borderBottomWidth: 1,
 	},
-	active: {
-		// Idk, color blue or something later
-	},
+	active: {},
 });
