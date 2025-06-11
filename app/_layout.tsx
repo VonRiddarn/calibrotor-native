@@ -3,6 +3,7 @@ import React from "react";
 import { Slot } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NavLink from "../src/components/NavLink/NavLink";
+import { FontAwesome } from "@expo/vector-icons";
 
 const RootLayout = () => {
 	return (
@@ -12,8 +13,12 @@ const RootLayout = () => {
 				<Slot />
 			</View>
 			<View style={styles.navbar}>
-				<NavLink to={"/calendar"}>Calendar</NavLink>
-				<NavLink to={"/"}>Home</NavLink>
+				<NavLink to={"/"}>
+					<FontAwesome name={"home"} size={32} />
+				</NavLink>
+				<NavLink to={"/calendar"}>
+					<FontAwesome name={"calendar"} size={32} />
+				</NavLink>
 				<Text>Footer</Text>
 			</View>
 		</SafeAreaView>
