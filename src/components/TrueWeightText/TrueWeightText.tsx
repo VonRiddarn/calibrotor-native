@@ -21,14 +21,12 @@ const TrueWeightText = ({ date, retrospect }: TrueWeightTextProps) => {
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.box}>
-				<View>
-					<Text>True Weight</Text>
-					<View style={{ flexDirection: "row", gap: 6, justifyContent: "center" }}>
-						<Text>{getRollingAverage(logsState.getSpan(date, retrospect))}</Text>
-						<Text>Kg</Text>
-					</View>
-				</View>
+			<Text style={styles.title}>True Weight</Text>
+			<View style={styles.row}>
+				<Text style={styles.weightText}>
+					{getRollingAverage(logsState.getSpan(date, retrospect))}
+				</Text>
+				<Text style={styles.unitText}>Kg</Text>
 			</View>
 		</View>
 	);
@@ -36,14 +34,28 @@ const TrueWeightText = ({ date, retrospect }: TrueWeightTextProps) => {
 
 export default TrueWeightText;
 
+// Styling in React Native is literally hell.
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: "row",
-		justifyContent: "center",
+		alignItems: "center",
+		padding: 16,
 	},
-	box: {
-		marginVertical: 16,
-		padding: 32,
-		backgroundColor: "#F8F9FA",
+	title: {
+		fontSize: 18,
+		marginBottom: 8,
+		color: "black",
+	},
+	row: {
+		flexDirection: "row",
+		alignItems: "center",
+		gap: 6,
+	},
+	weightText: {
+		fontSize: 24,
+		color: "black",
+	},
+	unitText: {
+		fontSize: 24,
+		color: "grey",
 	},
 });
