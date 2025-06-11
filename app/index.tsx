@@ -6,7 +6,7 @@ import { dateToFormatDate } from "../src/utilities/dateConverter";
 const Home = () => {
 	return (
 		<View>
-			<TrueWeightText date={dateToFormatDate(new Date())} retrospect={0} />
+			<TrueWeightText date={dateToFormatDate(new Date())} retrospect={7} />
 			<Text>My test text</Text>
 		</View>
 	);
