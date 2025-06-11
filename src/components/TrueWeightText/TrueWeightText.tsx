@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useLogs } from "../../contexts/LogsContext";
 import { Log } from "../../types/Log";
+import { WeightedListItem } from "../../types/WeightedListItem";
 
 type TrueWeightTextProps = {
 	date: number;
@@ -11,10 +12,10 @@ type TrueWeightTextProps = {
 const TrueWeightText = ({ date, retrospect }: TrueWeightTextProps) => {
 	const logsState = useLogs();
 
-	const getRollingAverage = (logs: Log[]) => {
+	const getRollingAverage = (logs: WeightedListItem<Log>[]) => {
 		if (!logs.length) return "--";
 
-		const total = logs.reduce((sum, log) => sum + log.weight, 0);
+		const total = logs.reduce((sum, log) => sum + log.item.weight, 0);
 		return (total / logs.length).toFixed(2);
 	};
 
