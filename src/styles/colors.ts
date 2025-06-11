@@ -5,7 +5,7 @@ export const colors = {
 	},
 
 	background: {
-		lightGrey: "#242424",
-		darkGrey: "#1d1d1d",
+		lightGrey: "#323232",
+		darkGrey: "#242424",
 	},
 } as const;
