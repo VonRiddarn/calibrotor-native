@@ -39,7 +39,7 @@ const reducer = (state: LogState, action: Action): LogState => {
 };
 
 export const LogsProvider = ({ children }: { children: ReactNode }) => {
-	const [state, dispatch] = useReducer(reducer, { 20250611: { weight: 100 }, 20250610: { weight: 100 } });
+	const [state, dispatch] = useReducer(reducer, { 20250611: { weight: 100 }, 20250610: { weight: 90 } });
 
 	// Methods that mutates the state
 	const push = useCallback(
