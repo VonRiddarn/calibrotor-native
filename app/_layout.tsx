@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Link, Slot, Stack } from "expo-router";
+import { Slot } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import NavLink from "../src/components/NavLink/NavLink";
 
 const RootLayout = () => {
 	return (
@@ -11,8 +12,8 @@ const RootLayout = () => {
 				<Slot />
 			</View>
 			<View style={styles.navbar}>
-				<Link href={"/calendar"}>Calendar</Link>
-				<Link href={"/"}>Home</Link>
+				<NavLink to={"/calendar"}>Calendar</NavLink>
+				<NavLink to={"/"}>Home</NavLink>
 				<Text>Footer</Text>
 			</View>
 		</SafeAreaView>
