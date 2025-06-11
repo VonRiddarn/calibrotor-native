@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Slot } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -6,19 +6,26 @@ import NavLink from "../src/components/NavLink/NavLink";
 import { FontAwesome } from "@expo/vector-icons";
 import NavFontAwesome from "../src/NavFontAwesome/NavFontAwesome";
 import { LogsProvider } from "../src/contexts/LogsContext";
+import LogModal from "../src/features/LogModal/LogModal";
+import { LogModalProvider, useLogModal } from "../src/features/LogModal/LogModalContext";
+import OpenLogButton from "../src/components/OpenLogButton/OpenLogButton";
 
 const RootLayout = () => {
 	return (
 		<LogsProvider>
-			<SafeAreaView style={styles.viewContainer} edges={["top", "bottom"]}>
-				<View style={styles.pageContainer}>
-					<Slot />
-				</View>
-				<View style={styles.navbar}>
-					<NavFontAwesome to={"/"} name="home"></NavFontAwesome>
-					<NavFontAwesome to={"/calendar"} name="calendar"></NavFontAwesome>
-				</View>
-			</SafeAreaView>
+			<LogModalProvider>
+				<SafeAreaView style={styles.viewContainer} edges={["top", "bottom"]}>
+					<LogModal />
+					<View style={styles.pageContainer}>
+						<Slot />
+					</View>
+					<OpenLogButton />
+					<View style={styles.navbar}>
+						<NavFontAwesome to={"/"} name="home"></NavFontAwesome>
+						<NavFontAwesome to={"/calendar"} name="calendar"></NavFontAwesome>
+					</View>
+				</SafeAreaView>
+			</LogModalProvider>
 		</LogsProvider>
 	);
 };
